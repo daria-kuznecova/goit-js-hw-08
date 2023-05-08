@@ -30,14 +30,16 @@ function getFeedBack() {
 
 function submit(event) {
   event.preventDefault();
-  if (input.value.trim() != '' && textArea.value.trim() != '') {
+  if (input.value.trim() === '' || textArea.value.trim() === '') {
+    return alert('Empty fields must be filled');
+  } else {
     console.log({
       email: input.value,
       message: textArea.value,
     });
+    form.reset();
+    localStorage.clear();
   }
-  form.reset();
-  localStorage.clear();
 }
 
 input.addEventListener('input', throttle(formEl, 500));
